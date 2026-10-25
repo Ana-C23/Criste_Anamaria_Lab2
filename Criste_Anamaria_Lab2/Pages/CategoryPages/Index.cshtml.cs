@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Criste_Anamaria_Lab2.Models;
 
-namespace Criste_Anamaria_Lab2.Pages.BookPages;
+namespace Criste_Anamaria_Lab2.Pages.CategoryPages;
 
 public class IndexModel : PageModel
 {
@@ -14,13 +14,10 @@ public class IndexModel : PageModel
         _context = context;
     }
 
-    public IList<Book> Book { get; set; } = default!;
+    public IList<Category> Category { get; set; } = default!;
 
     public async Task OnGetAsync()
     {
-        Book= await _context.Book
-            .Include(b => b.Publisher)
-            .Include(b => b.Author)
-            .ToListAsync();
+        Category = await _context.Category.ToListAsync();
     }
 }
